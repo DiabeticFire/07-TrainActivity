@@ -30,4 +30,20 @@ $("#submit").click(function(e) {
   $("#destination").val("");
   $("#startTime").val("");
   $("#frequency").val("");
+
+  updateTable();
 });
+
+function updateTable() {
+  database.ref("trains/").on("value", snapshot => {
+    console.log(snapshot.val());
+
+    let trains = snapshot.val();
+    for (let train in trains) {
+      let tr = $("<tr>");
+      tr.append($("<td>").val(train));
+      tr.append($("<td>").val(trains[train].destination));
+      tr.append($("<td>").val(trains[train].frequency));
+    }
+  });
+}
