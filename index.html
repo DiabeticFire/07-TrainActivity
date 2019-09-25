@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Train Activity</title>
+
+    <!-- CSS Files-->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Train Activity</h1>
+    <table id="trainTable">
+      <thead>
+        <tr>
+          <th colspan="5">Current Train Schedule</th>
+        </tr>
+        <tr>
+          <th>Train Name</th>
+          <th>Destination</th>
+          <th>Frequency</th>
+          <th>Next Arrival</th>
+          <th>Minutes Away</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <form id="addTrain">
+      <div class="formField">
+        <label for="name">Train Name:</label>
+        <input class="formElement" type="text" name="name" id="name" />
+      </div>
+      <div class="formField">
+        <label for="destination">Destination:</label>
+        <input
+          class="formElement"
+          type="text"
+          name="destination"
+          id="destination"
+        />
+      </div>
+      <div class="formField">
+        <label for="startTime">First Train Time (HH:MM - military time)</label>
+        <input
+          class="formElement"
+          type="time"
+          name="startTime"
+          id="startTime"
+        />
+      </div>
+      <div class="formField">
+        <label for="frequency">Frequency (minutes):</label>
+        <input
+          class="formElement"
+          type="number"
+          name="frequency"
+          id="frequency"
+        />
+      </div>
+      <div class="formField"><input type="submit" id="submit" /></div>
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCXcFbkt7ULMa2ojima-SD-vDxZU_Pb0IE",
+        authDomain: "train-activity-266a6.firebaseapp.com",
+        databaseURL: "https://train-activity-266a6.firebaseio.com",
+        projectId: "train-activity-266a6",
+        storageBucket: "gs://train-activity-266a6.appspot.com/",
+        messagingSenderId: "865713014290",
+        appId: "1:865713014290:web:d533d5138b373204447acb",
+        measurementId: "G-G2T1XR4JN6"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- JS Files -->
+    <script src="app.js"></script>
+  </body>
+</html>
