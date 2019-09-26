@@ -11,6 +11,9 @@ function addTrain(name, destination, startTime, frequency) {
 $("#submit").click(function(e) {
   e.preventDefault();
 
+  let today = moment();
+  "string".split(":");
+
   let name = $("#name")
     .val()
     .trim();
@@ -20,11 +23,21 @@ $("#submit").click(function(e) {
   let startTime = $("#startTime")
     .val()
     .trim();
+  let hour = startTime.split(":")[0];
+  let minute = startTime.split(":")[1];
   let frequency = $("#frequency")
     .val()
     .trim();
 
-  addTrain(name, destination, startTime, frequency);
+  addTrain(
+    name,
+    destination,
+    moment(today)
+      .hour(hour)
+      .minute(minute)
+      .format("MM/DD/YYYY HH:mm"),
+    frequency
+  );
 
   $("#name").val("");
   $("#destination").val("");
@@ -35,15 +48,20 @@ $("#submit").click(function(e) {
 });
 
 function updateTable() {
-  database.ref("trains/").on("value", snapshot => {
-    console.log(snapshot.val());
+  $("tbody").empty();
 
+  database.ref("trains/").on("value", (snapshot) => {
     let trains = snapshot.val();
     for (let train in trains) {
       let tr = $("<tr>");
-      tr.append($("<td>").val(train));
-      tr.append($("<td>").val(trains[train].destination));
-      tr.append($("<td>").val(trains[train].frequency));
+      tr.append($("<td>").text(train));
+      tr.append($("<td>").text(trains[train].destination));
+      tr.append($("<td>").text(trains[train].frequency));
+      // next arrival
+      // minutes away
+      $("tbody").append(tr);
     }
   });
 }
+
+updateTable();

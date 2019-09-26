@@ -12,6 +12,9 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </head>
   <body>
     <h1>Train Activity</h1>
@@ -37,30 +40,15 @@
       </div>
       <div class="formField">
         <label for="destination">Destination:</label>
-        <input
-          class="formElement"
-          type="text"
-          name="destination"
-          id="destination"
-        />
+        <input class="formElement" type="text" name="destination" id="destination" />
       </div>
       <div class="formField">
         <label for="startTime">First Train Time (HH:MM - military time)</label>
-        <input
-          class="formElement"
-          type="time"
-          name="startTime"
-          id="startTime"
-        />
+        <input class="formElement" type="time" name="startTime" id="startTime" />
       </div>
       <div class="formField">
         <label for="frequency">Frequency (minutes):</label>
-        <input
-          class="formElement"
-          type="number"
-          name="frequency"
-          id="frequency"
-        />
+        <input class="formElement" type="number" name="frequency" id="frequency" />
       </div>
       <div class="formField"><input type="submit" id="submit" /></div>
     </form>
