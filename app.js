@@ -35,7 +35,7 @@ $("#submit").click(function(e) {
     moment(today)
       .hour(hour)
       .minute(minute)
-      .format("MM/DD/YYYY HH:mm"),
+      .format("MM/DD/YYYY hh:mm A"),
     frequency
   );
 
@@ -57,11 +57,24 @@ function updateTable() {
       tr.append($("<td>").text(train));
       tr.append($("<td>").text(trains[train].destination));
       tr.append($("<td>").text(trains[train].frequency));
-      // next arrival
+      tr.append($("<td>").text(nextArival(trains[train])));
       // minutes away
       $("tbody").append(tr);
     }
   });
+}
+
+function nextArival(train) {
+  console.log(train);
+
+  let startTime = moment(train.startTime, "MM/DD/YYYY hh:mm A");
+  let duration = moment.duration(train.frequency, "minutes");
+
+  while (startTime.isBefore(moment())) {
+    startTime.add(duration);
+  }
+
+  return startTime.format("MM/DD/YYYY hh:mm A");
 }
 
 updateTable();
