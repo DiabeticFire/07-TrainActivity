@@ -1,7 +1,7 @@
 # 07-TrainActivity
 
-Github.io:
-Github Repository:
+Github.io: https://diabeticfire.github.io/07-TrainActivity/
+Github Repository: https://github.com/DiabeticFire/07-TrainActivity
 
 TODO:
 
