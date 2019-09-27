@@ -1,0 +1,26 @@
+h1 {
+  font-size: 48px;
+}
+
+table,
+th,
+td,
+thead,
+tr,
+tbody {
+  border: 3px solid purple;
+  border-collapse: collapse;
+}
+
+table {
+  width: 70%;
+}
+
+th {
+  text-align: center;
+}
+
+th,
+td {
+  width: 20%;
+}

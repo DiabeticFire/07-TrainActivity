@@ -50,7 +50,7 @@ $("#submit").click(function(e) {
 function updateTable() {
   $("tbody").empty();
 
-  database.ref("trains/").on("value", (snapshot) => {
+  database.ref("trains/").on("value", snapshot => {
     let trains = snapshot.val();
     for (let train in trains) {
       let tr = $("<tr>");
@@ -58,23 +58,33 @@ function updateTable() {
       tr.append($("<td>").text(trains[train].destination));
       tr.append($("<td>").text(trains[train].frequency));
       tr.append($("<td>").text(nextArival(trains[train])));
-      // minutes away
+      tr.append($("<td>").text(minutesAway(nextArival(trains[train]))));
       $("tbody").append(tr);
     }
   });
 }
 
 function nextArival(train) {
-  console.log(train);
-
   let startTime = moment(train.startTime, "MM/DD/YYYY hh:mm A");
-  let duration = moment.duration(train.frequency, "minutes");
+  let duration = moment.duration(parseInt(train.frequency), "minutes");
 
   while (startTime.isBefore(moment())) {
     startTime.add(duration);
   }
 
   return startTime.format("MM/DD/YYYY hh:mm A");
+}
+
+function minutesAway(nextArival) {
+  let arival = moment(nextArival, "MM/DD/YYYY hh:mm A");
+  let arivalMinutes = arival.minute();
+  let arivalHours = arival.hours();
+  let nowMinutes = moment().minute();
+  let nowHours = moment().hour();
+
+  let minutesAway = (arivalHours - nowHours) * 60 + arivalMinutes - nowMinutes;
+
+  return minutesAway;
 }
 
 updateTable();
